@@ -2,7 +2,7 @@ import os
 import sys
 import random
 import numpy as np
-from p2_mahjong.wrapper import MJWrapper as Wrapper
+from p2_project.wrapper import MJWrapper as Wrapper
 
 if __name__ == "__main__":
     wrapper = Wrapper()
