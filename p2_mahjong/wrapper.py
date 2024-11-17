@@ -243,21 +243,21 @@ class MJWrapper(object):
         previous_triplets = count_triplets(previous_hand)
         current_triplets = count_triplets(current_hand)
         if current_triplets > previous_triplets:
-            rewards[cur_player] += 1  # 刻子增加
+            rewards[cur_player] += 5  # 刻子增加
         elif current_triplets < previous_triplets:
-            rewards[cur_player] -= 1  # 刻子减少
+            rewards[cur_player] -= 5  # 刻子减少
 
         # 顺子数量变化奖励
         previous_sequences = count_sequences(previous_hand)
         current_sequences = count_sequences(current_hand)
         if current_sequences > previous_sequences:
-            rewards[cur_player] += 1  # 顺子增加
+            rewards[cur_player] += 5  # 顺子增加
         elif current_sequences < previous_sequences:
-            rewards[cur_player] -= 1  # 顺子减少
+            rewards[cur_player] -= 5  # 顺子减少
 
         # 动作类型奖励/惩罚
         if action_key == ActionType.ActionTypeChow:
-            rewards[cur_player] += 3  # 吃奖励
+            rewards[cur_player] += 5  # 吃奖励
         elif action_key == ActionType.ActionTypePong:
             rewards[cur_player] += 5  # 碰奖励
         elif action_key == ActionType.ActionTypeGong:
@@ -268,11 +268,11 @@ class MJWrapper(object):
         # 被吃/碰/杠/点炮的惩罚
         next_player = (cur_player + 1) % self.PLAYERS_NUM
         if action_key == ActionType.ActionTypeChow:
-            rewards[next_player] -= 3  # 被吃惩罚
+            rewards[next_player] -= 1  # 被吃惩罚
         elif action_key == ActionType.ActionTypePong:
-            rewards[next_player] -= 5  # 被碰惩罚
+            rewards[next_player] -= 1  # 被碰惩罚
         elif action_key == ActionType.ActionTypeGong:
-            rewards[next_player] -= 5  # 被杠惩罚
+            rewards[next_player] -= 1  # 被杠惩罚
         elif action_key == ActionType.ActionTypeHu:
             rewards[next_player] -= 10  # 点炮惩罚
 
